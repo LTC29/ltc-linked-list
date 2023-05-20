@@ -50,4 +50,72 @@ class LinkedList {
     }
     return current;
   }
+
+  at(index) {
+    if (index < 0 || index > this.size || !this.head) {
+      return null;
+    }
+    let current = this.head;
+    let currentIndex = 0;
+    while (current && currentIndex !== index) {
+      //keeps traversing and adding to the index counter until the desired index is reached
+      current = current.nextNode;
+      currentIndex++;
+    }
+    return current;
+  }
+
+  popTail() {
+    let current = this.head;
+    let previous = null;
+    while (current.nextNode) {
+      current = current.nextNode;
+    }
+    if (previous) {
+      //makes previous nextNode null and makes the current instance null
+      previous.nextNode = null;
+    } else {
+      this.head = null;
+    }
+  }
+  contains(value) {
+    let current = this.head;
+    while (current) {
+      if (current.value === value) {
+        return true;
+      }
+      current = current.nextNode; //standard traversal
+    }
+    return false;
+  }
+
+  find(value) {
+    let current = this.head;
+    let currentIndex = 0;
+    while (current) {
+      if (current.value === value) {
+        return currentIndex;
+      }
+      current = current.nextNode; //standard traversal once again
+      currentIndex++;
+    }
+    return null; //value not found
+  }
+  listToString() {
+    let current = this.head;
+    let string = '';
+    while (current) {
+      string += `(${current.value} + '') ->`;
+      current = current.nextNode;
+    }
+    string += 'null';
+    return string;
+  }
 }
+
+//OBS:
+// let current = this.head; sets the head as the current instance
+//
+// let currentIndex = 0; sets the index as 0 to "start from the beginning"
+//
+// while (current) means that the loop will continue to execute as long as "current" is true/truthy
