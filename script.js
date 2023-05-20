@@ -33,4 +33,21 @@ class LinkedList {
     this.head = newNode;
     this.size++;
   }
+
+  checkSize() {
+    return this.size;
+  }
+
+  checkHead() {
+    return this.head;
+  }
+
+  checkTail() {
+    let current = this.head;
+    while (current.nextNode) {
+      //while there is a next node, the current node becomes the next node until there isn't a next node and then it will return the last node of the tree
+      current = current.nextNode;
+    }
+    return current;
+  }
 }
